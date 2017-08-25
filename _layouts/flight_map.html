@@ -346,7 +346,12 @@ text.year_label {
                 .style('left', (d3.event.pageX - (size * 6) - 5) + 'px')		
                 .style('top', (d3.event.pageY - 15) + 'px');
         }
-
+	function hide_carrier(d){
+            div_carrier.transition()
+                .duration(600)
+                .style('opacity', 0);
+        }
+	    
         //two simple return key functions for data use.    
         function key_delay(d) {
             return d['key'];
@@ -552,7 +557,7 @@ text.year_label {
                     .append('div')
                     .append('text')
                     .on('mouseover', show_carrier)
-                    .on('mouseout', hide_tooltip)
+                    .on('mouseout', hide_carrier)
                     .attr('y', function(d, i) {
                         return i * 20 + 5;
                     })
