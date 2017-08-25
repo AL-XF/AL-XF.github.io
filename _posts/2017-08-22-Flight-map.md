@@ -16,7 +16,7 @@ Visual encoding:
 * Airports (location) - Encoding: Center of bubbles (Geography Position).
     It shows all airport locations on the map very clear.
 * Rate - Encoding: circle area size (Square root of Variables -> Radius).
-    Circle area $$size = \pi \times radius^2$$, if I want to present the varibales
+    Circle area \\(size = \pi \times radius^2\\), if I want to present the varibales
     by area size, I need radius of my circle is proportional to the sqaure root 
     of variables
 * Type - Encoding: color hue.
