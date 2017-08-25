@@ -343,7 +343,7 @@ text.year_label {
                 .style('opacity', 0.9);
             div_carrier.html(carrier_name)
                 .style('width', (size * 6) + 'px')
-                .style('left', (840 - (size * 6)) + 'px')		
+                .style('left', (d3.event.pageX - (size * 6) - 5) + 'px')		
                 .style('top', (d3.event.pageY - 15) + 'px');
         }
 
