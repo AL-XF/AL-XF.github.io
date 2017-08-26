@@ -4,10 +4,10 @@ body {
 }
 
 .container {
-	width:calc(100% - 40px);
+    width:calc(100% - 40px);
     height:auto;
-	margin:0 auto;
-	position:relative;
+    margin:0 auto;
+    position:relative;
 }
 
 nav ul, footer ul {
