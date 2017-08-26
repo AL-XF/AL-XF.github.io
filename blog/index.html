@@ -1,11 +1,13 @@
 ---
-layout: default
+layout: blog
 title: Blog Page
 ---
 	<h1>{{ page.title }}</h1>
-	<ul class="posts">
+	<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }
 
 	  {% for post in site.posts %}
-	    <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+	    <div class="grid-item">
+	    	<span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+	    </div>
 	  {% endfor %}
-	</ul>
+	</div>
