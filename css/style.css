@@ -57,7 +57,7 @@ footer {
     position: relative;
     font-size: 16px;
 }
-.item_img {
+.item_img img {
     position: relative;
     width: 90%;
     margin: 5px auto;
