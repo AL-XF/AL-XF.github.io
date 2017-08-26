@@ -10,7 +10,7 @@ title: Blog Page
 		{% if post.img %} 
 		<div class="item_img"><a href="{{ post.url }}" title="{{ post.title }}"><img src="/images/{{ post.img }}"></a></div>
 		{% endif %}
-		<div class="item_caption"> Posted at: {{ post.date | date_to_string }}</div>	    
+		<div class="item_caption"> Posted at: {{ post.date | date: "%b %d, %Y" }}</div>	    
 	    </div>
 	  {% endfor %}
 	</div>
