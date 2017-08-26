@@ -2,6 +2,7 @@
 layout: flight_map
 title: "Flight map"
 date: 2017-08-22
+img: "flight_img.png"
 ---
 ## Summary
 A map plot use circle size that summarizes rate of delay flights and 
