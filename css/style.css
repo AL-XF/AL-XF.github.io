@@ -54,7 +54,7 @@ footer {
 
 .grid-item { 
     width: 200px;
-    margin: 10px auto;
+    margin-bottom: 10px;
     float: left;
     border: 2px solid #333;
     border-color: hsla(0, 0%, 0%, 0.5);
