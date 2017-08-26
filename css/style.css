@@ -52,3 +52,14 @@ footer {
     border-color: hsla(0, 0%, 0%, 0.5);
     border-radius: 5px;
 }
+
+.item_title {
+    font-size: 16px;
+}
+.item_img {
+    width: 90%;
+    margin: 5px auto;
+}
+.item_caption{
+    font-size: 14px;
+}
