@@ -41,12 +41,12 @@ footer {
     font-size: .8em;
 }
 
-.grid {
+#grid {
   max-width: 100%;
 }
 
 /* clearfix */
-.grid:after {
+#grid:after {
   content: '';
   display: block;
   clear: both;
