@@ -3,7 +3,7 @@ layout: blog
 title: Blog Page
 ---
 	<h1>{{ page.title }}</h1>
-	<div class="grid">
+	<div id="grid">
 	  {% for post in site.posts %}
 	    <div class="grid-item">
 		<div class="item_title"><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></div>
