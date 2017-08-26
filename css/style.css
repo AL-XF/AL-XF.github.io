@@ -53,7 +53,7 @@ footer {
 }
 
 .grid-item { 
-    width: 200px;
+    width: calc(33% - 10px);
     margin-bottom: 10px;
     float: left;
     border: 2px solid #333;
@@ -67,7 +67,7 @@ footer {
 }
 .item_img img {
     position: relative;
-    width: 180px;
+    width: calc(90%);
     margin: 5px auto;
 }
 .item_caption{
