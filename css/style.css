@@ -5,9 +5,7 @@ body {
 
 .container {
     width:calc(100% - 40px);
-    height:auto;
     margin:0 auto;
-    padding-top:10px;
     position:relative;
 }
 
