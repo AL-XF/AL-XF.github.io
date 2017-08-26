@@ -6,15 +6,15 @@ title: Blog Page
 	<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200, "gutter": 10 }'>
 	  {% for post in site.posts %}
 	    <div class="grid-item">
-		<div class="item_title> 
+		<div class="item_title"> 
 			<a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
 		</div>
 		{% if post.img %} 
-			<div class="item_img> 
+			<div class="item_img"> 
 				<a href="{{ post.url }}" title="{{ post.title }}"><img src="/images/{{ post.img }}"></a>	
 			</div>
 		{% endif %}
-		<div class="item_caption> 
+		<div class="item_caption"> 
 			Posted at: {{ post.date | date_to_string }}
 		</div>    
 	    </div>
