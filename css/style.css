@@ -56,9 +56,9 @@ footer {
     width: calc(33% - 10px);
     margin-bottom: 10px;
     float: left;
-    border: 2px solid #333;
+    border: 0.5em solid #333;
     border-color: hsla(0, 0%, 0%, 0.5);
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 .item_title {
