@@ -33,6 +33,17 @@ footer {
     font-size: .8em;
 }
 
+.grid {
+  max-width: 100%;
+}
+
+/* clearfix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .grid-item { 
     width: 200px;
     margin: 10px auto;
