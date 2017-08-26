@@ -54,12 +54,15 @@ footer {
 }
 
 .item_title {
+    position: relative;
     font-size: 16px;
 }
 .item_img {
+    position: relative;
     width: 90%;
     margin: 5px auto;
 }
 .item_caption{
+    position: relative;
     font-size: 14px;
 }
