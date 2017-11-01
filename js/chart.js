@@ -127,6 +127,8 @@ var Chart = (function(window,d3) {
         foundBio = keyData.filter(function (d){ return d.ASSAY_ABBR === ySelection });
 
         //re-range y-axis
+        var xExtent = [0, xMax];
+        x = d3.scale.linear().domain(xExtent);
         var yExtent = getYextend(dataFixed, ySelection);
         y = d3.scale.linear().domain(yExtent);
         //reset line with new scale
