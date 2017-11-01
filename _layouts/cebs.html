@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ page.title }}</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link rel="stylesheet" type="text/css" href="/css/cebs_style.css">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body onresize="Chart.render()">
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/cv">CV</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+			<h2>CEBS</h2>
+        <div class="inputsection">
+            <form name="updateChart" onSubmit="return Chart.handleClick()">
+                    <input name="Submit" type="submit" value="Update Chart" > <br />
+                    Set Max Dose: <input type="text" id="xmax" placeholder="100" > <br />
+                    Select Dose Unit:   <input type="radio" name="dUnit" id="mg/kg" value="mg/kg" checked> mg/kg 
+                                        <input type="radio" name="dUnit" id="ppm" value="ppm"> ppm <br />
+                    Display Mode:   <input type="radio" name="displayMode" id="mean" value="mean" > mean 
+                                    <input type="radio" name="displayMode" id="median" value="median" checked> median
+            </form>
+        </div>
+        
+        <div id="chart"></div>
+        <script src="/js/chart.js"></script>
+    </div>
+</body>
+</html>
