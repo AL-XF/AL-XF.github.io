@@ -303,7 +303,7 @@ var Chart = (function(window,d3) {
         if (document.getElementById('xmax').value === ""){
             xMax = 100;
         } else if (!isNaN(document.getElementById('xmax').value)){
-            xMax = document.getElementById('xmax').value;
+            xMax = +document.getElementById('xmax').value;
         }else{
             xMax = 100;
             document.getElementById('xmax').value = 100;
