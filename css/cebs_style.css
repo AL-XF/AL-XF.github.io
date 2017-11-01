@@ -1,0 +1,89 @@
+body {
+  font: 0.8em sans-serif;
+  margin: 0;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 0.15em;
+}
+
+div.bio_buttons {
+    position: fixed;
+    right: 0;
+    top: 20%;
+    width: 8em;
+    margin-top: -2.5em;
+}
+div.bio_buttons div {
+    background-color: #A5D6A7;
+    padding: 3px;
+    margin: 7px;
+}
+
+div.inputsection {
+  position: fixed;
+  right: 0;
+  top: 5%;
+  width: 23em;
+  margin-top: -2.5em;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: left;			
+    width: 300px;					
+    height: 400px;					
+    padding: 5px;				
+    font: 12px sans-serif;		
+    background: white;	
+    border: 1px;
+    border-color: black;		
+    border-radius: 8px;			
+    pointer-events: none;		
+}
+text.titles {
+  font: 1.5em sans-serif;
+}
+
+.tooltipTable{
+	display: table;
+	width: 100%;
+}
+.tooltipTableRow {
+	display: table-row;
+}
+.tooltipTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.tooltipTableCell, .tooltipTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.tooltipTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.tooltipTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.tooltipTableBody {
+	display: table-row-group;
+}
