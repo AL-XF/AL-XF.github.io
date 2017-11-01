@@ -15,8 +15,8 @@ var Chart = (function(window,d3) {
                     };
     
     queue()
-        .defer(d3.tsv, './data/data.tsv')
-        .defer(d3.tsv, './data/keys.txt')
+        .defer(d3.tsv, '/data/data.tsv')
+        .defer(d3.tsv, '/data/keys.txt')
         .await(init); 
 
     function init(error, data, keys){
