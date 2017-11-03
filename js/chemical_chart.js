@@ -47,6 +47,9 @@ var Chart = (function(window,d3) {
         if ((typeof dataFixed === 'undefined' || dataFixed.length === 0)) {
             notFound = 1;
         }
+        if (excludeChemical.includes(chemicalSelection)){
+            notFound = 1;
+        }
         
 
         //initialize axis
@@ -193,7 +196,7 @@ var Chart = (function(window,d3) {
                 .attr('x', width / 2 )
                 .attr('y', height + margin.top + margin.bottom - 16)
                 .style("text-anchor", "middle")
-                .text('Dose ()');
+                .text('Dose (' + getDoseUnit(dataFixed) + ')');
             svg.append('text')
                 .attr('class', 'axisLabel')
                 .attr("transform", "translate("+ (margin.left/3) +","+ ((margin.top + height)/2) + ")rotate(-90)")
@@ -212,6 +215,10 @@ var Chart = (function(window,d3) {
                 .attr('cy', yMap)
                 .attr('r', '0.2em')
                 .style('fill', 'steelblue');
+    }
+
+    function getDoseUnit(d) {
+        return d[0].DOSE_UNIT;
     }
     
     function updateDimensions(winWidth) {
