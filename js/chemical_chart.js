@@ -151,7 +151,7 @@ var Chart = (function(window,d3) {
             chartWrapper.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
             //update the axis and line
-            var xTickFix = xAxis.ticks();
+            var xTickFix = x.ticks();
             debugger;
             xTickFix.push(0);
             xAxis.tickValues(xTickFix);
