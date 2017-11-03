@@ -66,7 +66,7 @@ var Chart = (function(window,d3) {
         var xTickFix = x.ticks();
         xTickFix.push(0);
         xAxis.tickValues(xTickFix);
-
+        debugger;
         //initialize dots map
         var xValue = function(d) { return +d.DOSE; };
         var yValue = function(d) { return +d[ySelection]; };
