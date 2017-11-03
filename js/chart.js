@@ -202,6 +202,7 @@ var Chart = (function(window,d3) {
                 .classed('line', true)
                 .on('mouseover', showTooltip)
                 .on('mouseout', hideTooltip)
+                .on('click', openDetailwindow)
                 .attr("d", function(d) {return line(d.values);});
             
     }
@@ -296,6 +297,11 @@ var Chart = (function(window,d3) {
         tooltipDiv.transition()
             .duration(600)
             .style('opacity', 0);
+    }
+    
+    function openDetailwindow(d){
+        var chemicalUrl = '/projects/chemicalCEBS?chemical_name='+ d.key;
+        window.location = chemicalUrl;
     }
 
     function handleClick(event){
