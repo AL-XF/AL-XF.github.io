@@ -1,6 +1,6 @@
 var Chart = (function(window,d3) {
     
-    var svg, rawData, dataFixed, keyData, chemicalSelection, ySelection, x, y, xAxis, yAxis, 
+    var svg, rawData, dataFixed, keyData, chemicalSelection, ySelection, x, y, xAxis, yAxis, xTickFix, 
         dim, xMap, yMap, chartWrapper, margin = {}, width, height, foundBio, notFound;
     var bioList = ['ALB', 'ALP', 'ALT', 'BUN', 'CK', 'CREAT', 'PROTEIN', 'SDH'];
     var bioUnit = {
@@ -54,7 +54,7 @@ var Chart = (function(window,d3) {
         
 
         //initialize axis
-        xAxis = d3.svg.axis().orient('bottom');;
+        xAxis = d3.svg.axis().orient('bottom');
         yAxis = d3.svg.axis().orient('left');
 
         //initialize scales
@@ -63,10 +63,9 @@ var Chart = (function(window,d3) {
         x = d3.scale.linear().domain(extentExtent(xExtent));        
         y = d3.scale.linear().domain(extentExtent(yExtent));
 
-        var xTickFix = x.ticks();
+        xTickFix = x.ticks();
         xTickFix.push(0);
-        xAxis.tickValues(xTickFix);
-        debugger;
+
         //initialize dots map
         var xValue = function(d) { return +d.DOSE; };
         var yValue = function(d) { return +d[ySelection]; };
@@ -155,7 +154,7 @@ var Chart = (function(window,d3) {
             chartWrapper.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
             //update the axis and line
-            xAxis.scale(x);
+            xAxis.scale(x).tickValues(xTickFix);;
             yAxis.scale(y);
 
             svg.select('.x.axis')
