@@ -33,6 +33,7 @@ var Chart = (function(window,d3) {
         
         chemicalSelection = getUrlVariable('chemical_name', 'Acetaminophen');
         console.log(chemicalSelection);
+
         //Biological Selection
         ySelection = 'ALB';
         foundBio = keyData.filter(function (d){ return d.ASSAY_ABBR === ySelection; });
@@ -53,7 +54,7 @@ var Chart = (function(window,d3) {
         
 
         //initialize axis
-        xAxis = d3.svg.axis().orient('bottom');
+        xAxis = d3.svg.axis().orient('bottom').ticks(10);;
         yAxis = d3.svg.axis().orient('left');
 
         //initialize scales
@@ -188,7 +189,6 @@ var Chart = (function(window,d3) {
                 notFound = 0;
             }
             
-
             //axis labels
             svg.selectAll('.axisLabel').remove();
             svg.append('text')
