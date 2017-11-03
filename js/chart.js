@@ -300,7 +300,7 @@ var Chart = (function(window,d3) {
     }
     
     function openDetailwindow(d){
-        var chemicalUrl = '/projects/chemicalCEBS/?chemical_name='+ d.key;
+        var chemicalUrl = '/projects/chemicalCEBS?chemical_name='+ d.key;
         window.location = chemicalUrl;
     }
 
