@@ -64,7 +64,7 @@ var Chart = (function(window,d3) {
         y = d3.scale.linear().domain(extentExtent(yExtent));
 
         xTickFix = x.ticks();
-        xTickFix.push(0);
+        xTickFix.push(0.0);
 
         //initialize dots map
         var xValue = function(d) { return +d.DOSE; };
