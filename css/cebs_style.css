@@ -58,6 +58,11 @@ text.titles {
   font: 1.5em sans-serif;
 }
 
+text.warningLabel {
+  font: 1.5em sans-serif;
+  color: red;
+}
+
 .tooltipTable{
 	display: table;
 	width: 100%;
