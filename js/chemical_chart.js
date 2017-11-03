@@ -54,7 +54,7 @@ var Chart = (function(window,d3) {
         
 
         //initialize axis
-        xAxis = d3.svg.axis().orient('bottom').ticks(10);;
+        xAxis = d3.svg.axis().orient('bottom');;
         yAxis = d3.svg.axis().orient('left');
 
         //initialize scales
