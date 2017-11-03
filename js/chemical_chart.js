@@ -152,6 +152,7 @@ var Chart = (function(window,d3) {
 
             //update the axis and line
             var xTickFix = xAxis.ticks();
+            debugger;
             xTickFix.push(0);
             xAxis.tickValues(xTickFix);
             xAxis.scale(x);
