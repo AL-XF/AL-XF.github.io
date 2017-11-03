@@ -1,6 +1,6 @@
 ---
 layout: Chemical
-title: "Chemical Effects in Biological System"
+title: "Chemical"
 date: 2017-10-22
 img: "cebs.png"
 ---
