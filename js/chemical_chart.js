@@ -59,8 +59,8 @@ var Chart = (function(window,d3) {
         //initialize scales
         var xExtent = d3.extent(dataFixed, function(d,i) { return +d.DOSE; });
         var yExtent = d3.extent(dataFixed, function(d,i) { return +d[ySelection]; });
-        x = d3.scale.linear().domain(xExtent);        
-        y = d3.scale.linear().domain(yExtent);
+        x = d3.scale.linear().domain(extentExtent(xExtent));        
+        y = d3.scale.linear().domain(extentExtent(yExtent));
 
         //initialize dots map
         var xValue = function(d) { return +d.DOSE; };
@@ -126,7 +126,7 @@ var Chart = (function(window,d3) {
 
         //re-range y-axis
         var yExtent = d3.extent(dataFixed, function(d,i) { return +d[ySelection]; });     
-        y = d3.scale.linear().domain(yExtent);
+        y = d3.scale.linear().domain(extentExtent(yExtent));
 
         //reset dot with new scale
         var yValue = function(d) { return +d[ySelection]; };
@@ -219,6 +219,11 @@ var Chart = (function(window,d3) {
 
     function getDoseUnit(d) {
         return d[0].DOSE_UNIT;
+    }
+
+    function extentExtent(extentArray) {
+        var newExtent = [+extentArray[0] - 1, +extentArray[1] + 1 ];
+        return newExtent;
     }
     
     function updateDimensions(winWidth) {
