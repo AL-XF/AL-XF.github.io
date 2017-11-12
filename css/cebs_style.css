@@ -16,14 +16,13 @@ body {
 
 .line {
   fill: none;
-  stroke: steelblue;
   stroke-width: 0.15em;
 }
 
 div.bio_buttons {
     position: fixed;
     right: 0;
-    top: 20%;
+    top: 130px;
     width: 8em;
     margin-top: -2.5em;
 }
@@ -31,6 +30,22 @@ div.bio_buttons div {
     background-color: #A5D6A7;
     padding: 3px;
     margin: 7px;
+}
+
+div.legend {
+  position: fixed;
+  right: 20px;
+  top: 400px;
+  width: 12em;
+}
+div.legend div {
+  padding: 3px;
+}
+div.legendTitle {
+  position: fixed;
+  right: 20px;
+  top: 370px;
+  width: 12em;
 }
 
 div.inputsection {
