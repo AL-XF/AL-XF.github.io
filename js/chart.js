@@ -305,7 +305,7 @@ var Chart = (function(window,d3) {
 
   function updateDimensions(winWidth) {
       margin.top = 70;
-      margin.right = 50;
+      margin.right = 100;
       margin.left = 50;
       margin.bottom = 50;
   
