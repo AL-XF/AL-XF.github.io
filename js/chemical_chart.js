@@ -1,8 +1,11 @@
 var Chart = (function(window,d3) {
     
     var svg, rawData, dataFixed, keyData, chemicalSelection, ySelection, x, y, xAxis, yAxis, xTickFix, 
-        dim, xMap, yMap, chartWrapper, margin = {}, width, height, foundBio, notFound;
+        dim, xMap, yMap, chartWrapper, margin = {}, width, height, foundBio, notFound,
+        chemicalReport, reportTable, reportConclusion;
     var bioList = ['ALB', 'ALP', 'ALT', 'BUN', 'CK', 'CREAT', 'PROTEIN', 'SDH'];
+    var reportList = ['DOSE','ALB', 'ALP', 'ALT', 'BUN', 'CK', 'CREAT', 'PROTEIN', 'SDH'];
+    var standardValue = {};
     var bioUnit = {
                     ALB     : 'g/dL',
                     ALP     : 'U/L',  
@@ -16,8 +19,8 @@ var Chart = (function(window,d3) {
     var excludeChemical = ['No stressor', 'no stressor', 'No Stressor'];
 
     queue()
-    .defer(d3.tsv, '/data/data.tsv')
-    .defer(d3.tsv, '/data/keys.txt')
+    .defer(d3.tsv, 'data.tsv')
+    .defer(d3.tsv, 'keys.txt')
     .await(init); 
 
     function init(error, data, keys){
@@ -52,6 +55,8 @@ var Chart = (function(window,d3) {
             notFound = 1;
         }
         
+        //initialize Standard
+        standardValue = getStandardValue(dataFixed);
 
         //initialize axis
         xAxis = d3.svg.axis().orient('bottom');
@@ -86,14 +91,14 @@ var Chart = (function(window,d3) {
 
         //initialize select bio buttons    
         var bioButtons = d3.select('#chemical_chart')
-        .append('div')
-        .attr('class', 'bio_buttons')
-        .selectAll('div')
-        .data(bioList)
-        .enter()
-        .append('div')
-        .attr('class', function(d) {return d;})
-        .text(function(d) {return d;});
+            .append('div')
+            .attr('class', 'bio_buttons')
+            .selectAll('div')
+            .data(bioList)
+            .enter()
+            .append('div')
+            .attr('class', function(d) {return d;})
+            .text(function(d) {return d;});
 
         bioButtons.on('click', function(d) {            
             d3.select('.bio_buttons')
@@ -114,6 +119,15 @@ var Chart = (function(window,d3) {
             render();
         });
 
+        //initialize detailed report
+        chemicalReport = d3.select('#chemical_report')
+                            .append('div')
+                            .attr('class','report');
+        reportTable = chemicalReport.append('table');
+
+        reportConclusion = d3.select('#conclusion')
+                            .append('div')
+                            .attr('class','report_conclu');
         //render the chart
         render();
 
@@ -137,6 +151,167 @@ var Chart = (function(window,d3) {
         var yValue = function(d) { return +d[ySelection]; };
         yMap = function(d) { return y(yValue(d)); };
 
+    }
+
+    function generateReport() {
+        /*
+        Generate the report table
+        Use the madian of lowest DOSE data as standard value.
+        Normal range is between standard value X 75% and standard value X 125%
+        Count abnormal results to measure whether the test object effect bio system.
+        */
+        //nest combined data
+        var reportData = d3.nest()
+                            .key(function(d){
+                                if(isNaN(d.DOSE))
+                                    d.DOSE = 0;
+                                return +d.DOSE;
+                            }).sortKeys((a, b) => a - b)
+                            .rollup(function(leaves){
+                                var bioResult = {};
+                                for (i = 0; i < bioList.length; i++){
+                                    
+                                    var mean_value = d3.mean(leaves, function(d) {
+                                        return +d[bioList[i]];
+                                    });
+                                    var abnormalCount = 0;
+                                    for (var index =0; index<leaves.length; index++){
+                                        if(leaves[index][bioList[i]] < standardValue[bioList[i]]*0.75 ||
+                                            leaves[index][bioList[i]] > standardValue[bioList[i]]*1.25)
+                                            abnormalCount++;
+                                    }
+                                    bioResult[bioList[i]] = {'mean' : mean_value, 'abnormal' : abnormalCount};    
+                                }
+                                bioResult['count'] = leaves.length;
+                                return bioResult;
+                            })
+                            .entries(dataFixed);
+                            
+        reportTable.selectAll('thead').remove();
+        reportTable.selectAll('tbody').remove();
+        var thead = reportTable.append('thead');
+        var tbody = reportTable.append('tbody');
+        
+        //append table header
+        //mean, abnormal count, abnormal rate
+        thead.append('tr')
+            .selectAll('th')
+            .data(reportList)
+            .enter()
+            .append('th')
+            .attr('colspan',function (d) { if(d=='DOSE')return 1;else return 3; })
+            .text(function (d) { return d; });
+        
+        thead.append('tr')
+            .html(function (d) {
+                var htmlOutput = '<td> </td>';
+                for (i = 0; i < bioList.length; i++){
+                    var tempOutput = '<td> Mean </td>' +
+                                    '<td>Ab Count</td>' +
+                                    '<td>Ab Rate</td>';
+                    htmlOutput += tempOutput;
+                }
+                return htmlOutput; 
+            });
+    
+        //create a empty total for farther use    
+        var totalVar = {};
+        for (i = 0; i < bioList.length; i++){
+            totalVar[bioList[i]] = {'abnormal': 0, 'total': 0};
+        }
+
+        //append table contain
+        tbody.selectAll('tr')
+            .data(reportData)
+            .enter()
+            .append('tr')
+            .html(function(d){
+                var htmlOutput = '<td> '+ d.key + '</td>';
+                for (i = 0; i < bioList.length; i++){
+                    var mean = +d.values[bioList[i]]['mean'].toFixed(2);
+                    var rate = d.values[bioList[i]]['abnormal'] * 100/d.values['count'];
+                    var tempOutput = '<td>' + mean + '</td>' +
+                                    '<td>' + d.values[bioList[i]]['abnormal'] + '</td>' +
+                                    '<td>' + rate.toFixed(2) + '%</td>';
+                    htmlOutput += tempOutput;
+                    totalVar[bioList[i]]['abnormal'] += d.values[bioList[i]]['abnormal'];
+                    totalVar[bioList[i]]['total'] += d.values['count'];
+                }
+                return htmlOutput;
+            });
+
+        tbody.append('tr')
+            .html(function(d){
+                    var htmlOutput = '<td> Total </td>';
+                    for (i = 0; i < bioList.length; i++){
+                        var rate = totalVar[bioList[i]]['abnormal'] * 100 / totalVar[bioList[i]]['total'];
+                        var tempOutput = '<td> - </td>' +
+                                        '<td>' + totalVar[bioList[i]]['abnormal'] + '</td>' +
+                                        '<td>' + rate.toFixed(2) + '%</td>';
+                        htmlOutput += tempOutput;
+                    }
+                    return htmlOutput;
+                });
+
+        //Generate conclusion
+        var warningError = '', bigEffect = [], smallEffect = [], noEffect = [];
+
+        for (i = 0; i < bioList.length; i++){
+
+            var abRate = totalVar[bioList[i]]['abnormal'] / totalVar[bioList[i]]['total'];
+            var preRate = reportData[0].values[bioList[i]]['abnormal'] / reportData[0].values['count'];
+
+            if(preRate > 0.4){
+                //warning ERROR
+                warningError += bioList[i] + 
+                ' may be not a valid analysis, because the abnormal rate of the lowest DOSE is very high, the normal range for this case seems incorrected. <br />';
+            }
+            if(abRate >= 0.5){
+                //big effect
+                bigEffect.push(bioList[i]);
+            }else if(abRate >= 0.2){
+                //small effect
+                smallEffect.push(bioList[i]);
+            }else{
+                //no effect
+                noEffect.push(bioList[i]);
+            }          
+        }
+        
+        var outputBig = generateConclu(bigEffect, totalVar);
+        var outputSmall = generateConclu(smallEffect, totalVar);
+        var outputNo = generateConclu(noEffect, totalVar);
+
+        var printHtml = '';
+        if(outputBig){
+            printHtml += outputBig[0];
+            if(outputSmall){
+                printHtml += outputSmall[0];
+                printHtml += chemicalSelection + ' effects ' + outputBig[1] + ' significantly, effects ' +
+                            outputSmall[1] + ' not significantly. <br />';
+            }else{
+                printHtml += chemicalSelection + ' effects ' + outputBig[1] + ' significantly. <br />';
+            }
+        }else if(outputSmall){
+            printHtml += outputSmall[0];
+            printHtml += chemicalSelection + ' effects ' + outputSmall[1] + ' not significantly. <br />';
+        }
+
+        if(outputNo){
+            printHtml += outputNo[0];
+            printHtml += 'Either ' + chemicalSelection + ' effects ' + outputNo[1] + 
+                        ' insignificantly or measurement records of ' + outputNo[1] + ' are missing.';
+        }
+
+        //print out report
+        reportConclusion.selectAll('div').remove();
+        reportConclusion.append('div')
+                        .attr('class','warningE')
+                        .html(warningError);
+        reportConclusion.append('div')
+                        .attr('class','conReport')
+                        .html(printHtml);
+        
     }
 
     function render() {
@@ -219,10 +394,56 @@ var Chart = (function(window,d3) {
                 .attr('cy', yMap)
                 .attr('r', '0.2em')
                 .style('fill', 'steelblue');
+
+            //display report
+            generateReport();
     }
 
     function getDoseUnit(d) {
         return d[0].DOSE_UNIT;
+    }
+
+    function getStandardValue(d) {
+        var nested = d3.nest()
+                        .key(function(d){
+                            if(isNaN(d.DOSE))
+                                d.DOSE = 0;
+                            return +d.DOSE;
+                        }).sortKeys((a, b) => a - b)
+                        .rollup(function(leaves){
+                            var bioResult = {};
+                            for (i = 0; i < bioList.length; i++){
+                                var median_value = d3.median(leaves, function(d) {
+                                    return +d[bioList[i]];
+                                });
+                                bioResult[bioList[i]] = median_value;    
+                            }
+                            return bioResult;
+                        })
+                        .entries(d);
+        return nested[0].values;
+    }
+
+    function generateConclu(list, totalList){
+        var output = '', items = '';
+        if(list.length > 0){
+            for (i = 0; i < list.length; i++){
+                var pRate = totalList[list[i]]['abnormal']*100 / totalList[list[i]]['total'];
+                output += 'Abnormal rate of ' + list[i] + ' is ' + pRate.toFixed(2) + '%. <br /> ';
+
+                if(list.length > 1){
+                    if(i == list.length - 1){
+                        items += 'and ' + list[i];
+                    }else{
+                        items += list[i] + ', ';
+                    }
+                }else{
+                    items = list[i];
+                }
+            }
+            return [output, items];
+        }else
+            return false;    
     }
 
     function extentExtent(extentArray) {
