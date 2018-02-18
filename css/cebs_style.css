@@ -142,7 +142,7 @@ text.warningLabel {
   background: white;
 }
 
-#warningE {
+.warningE {
   font: 10px;
   color: red;
 }
