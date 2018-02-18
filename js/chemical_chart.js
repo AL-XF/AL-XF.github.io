@@ -299,7 +299,7 @@ var Chart = (function(window,d3) {
 
         if(outputNo){
             printHtml += outputNo[0];
-            printHtml += '<h5>Either ' + chemicalSelection + ' does not have effect on ' + outputNo[1] + 
+            printHtml += '<h5>Either ' + chemicalSelection + ' has no effect in ' + outputNo[1] + 
                         ' or measurement records of ' + outputNo[1] + ' are missing.</h5>';
         }
 
