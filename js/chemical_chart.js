@@ -19,9 +19,9 @@ var Chart = (function(window,d3) {
     var excludeChemical = ['No stressor', 'no stressor', 'No Stressor'];
 
     queue()
-    .defer(d3.tsv, 'data.tsv')
-    .defer(d3.tsv, 'keys.txt')
-    .await(init); 
+        .defer(d3.tsv, '/data/data.tsv')
+        .defer(d3.tsv, '/data/keys.txt')
+        .await(init); 
 
     function init(error, data, keys){
         /*
