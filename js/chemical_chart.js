@@ -288,13 +288,13 @@ var Chart = (function(window,d3) {
             if(outputSmall){
                 printHtml += outputSmall[0];
                 printHtml +='<h5>' + chemicalSelection + ' effects ' + outputBig[1] + ' significantly, effects ' +
-                            outputSmall[1] + ' not significantly. </h5><br />';
+                            outputSmall[1] + ' not significantly. </h5>';
             }else{
-                printHtml +='<h5>' +  chemicalSelection + ' effects ' + outputBig[1] + ' significantly. </h5><br />';
+                printHtml +='<h5>' +  chemicalSelection + ' effects ' + outputBig[1] + ' significantly. </h5>';
             }
         }else if(outputSmall){
             printHtml += outputSmall[0];
-            printHtml += '<h5>' + chemicalSelection + ' effects ' + outputSmall[1] + ' not significantly.  </h5><br />';
+            printHtml += '<h5>' + chemicalSelection + ' effects ' + outputSmall[1] + ' not significantly.  </h5>';
         }
 
         if(outputNo){
