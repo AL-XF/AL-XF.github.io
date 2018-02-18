@@ -110,6 +110,32 @@ text.warningLabel {
 	display: table-row-group;
 }
 
+div #pre_reprot {
+  text-align: left;
+  width: 90%;
+  height: 50px;
+  padding: 30px;
+  font: 12px sans-serif;
+  background: white;
+}
+
+div #chemical_report {
+  text-align: left;
+  width: 90%;
+  padding: 30px;
+  font: 12px sans-serif;
+  background: white;
+}
+
+.report table {
+  border-collapse: collapse;
+}
+
+.report table, th, td {
+  border: 1px solid black;
+}
+
+/*pop up box */
 a.selected {
   background-color:#1F75CC;
   color:white;
@@ -135,7 +161,7 @@ a.selected {
   padding-bottom: 8px;
 }
 
-/* The Close Button */
+/* pop up box - Close Button */
 .close {
   color: #aaaaaa;
   float: right;
