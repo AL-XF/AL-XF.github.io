@@ -141,8 +141,10 @@ text.warningLabel {
   font: 12px sans-serif;
   background: white;
 }
+
 #warningE {
-  font:10px red;
+  font: 10px;
+  color: red;
 }
 /*pop up box */
 a.selected {
