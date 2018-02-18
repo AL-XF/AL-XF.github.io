@@ -125,7 +125,7 @@ var Chart = (function(window,d3) {
                             .attr('class','report');
         reportTable = chemicalReport.append('table');
 
-        reportConclusion = d3.select('#conclusion')
+        reportConclusion = d3.select('#conclus')
                             .append('div')
                             .attr('class','report_conclu');
         //render the chart
