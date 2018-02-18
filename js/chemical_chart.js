@@ -299,8 +299,8 @@ var Chart = (function(window,d3) {
 
         if(outputNo){
             printHtml += outputNo[0];
-            printHtml += '<h5>Either ' + chemicalSelection + ' effects ' + outputNo[1] + 
-                        ' insignificantly or measurement records of ' + outputNo[1] + ' are missing.</h5>';
+            printHtml += '<h5>Either ' + chemicalSelection + ' does not have effect on ' + outputNo[1] + 
+                        ' or measurement records of ' + outputNo[1] + ' are missing.</h5>';
         }
 
         //print out report
