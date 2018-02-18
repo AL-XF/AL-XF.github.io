@@ -110,7 +110,7 @@ text.warningLabel {
 	display: table-row-group;
 }
 
-div #pre_reprot {
+#pre_reprot {
   text-align: left;
   width: 90%;
   height: 50px;
@@ -119,7 +119,7 @@ div #pre_reprot {
   background: white;
 }
 
-div #chemical_report {
+#chemical_report {
   text-align: left;
   width: 90%;
   padding: 30px;
@@ -130,11 +130,20 @@ div #chemical_report {
 .report table {
   border-collapse: collapse;
 }
-
 .report table, th, td {
   border: 1px solid black;
 }
 
+#conclusion {
+  text-align: left;
+  width: 90%;
+  padding: 30px;
+  font: 12px sans-serif;
+  background: white;
+}
+#warningE {
+  font:10px red;
+}
 /*pop up box */
 a.selected {
   background-color:#1F75CC;
@@ -150,7 +159,7 @@ a.selected {
   margin-top: 15px;
   position:absolute;
   text-align:left;
-  width:394px;
+  width:500px;
   z-index:50;
   padding: 25px 25px 20px;
 }
