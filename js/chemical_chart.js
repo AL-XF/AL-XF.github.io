@@ -19,9 +19,9 @@ var Chart = (function(window,d3) {
     var excludeChemical = ['No stressor', 'no stressor', 'No Stressor'];
 
     queue()
-        .defer(d3.tsv, '/data/data.tsv')
-        .defer(d3.tsv, '/data/keys.txt')
-        .await(init); 
+    .defer(d3.tsv, '/data/data.tsv')
+    .defer(d3.tsv, '/data/keys.txt')
+    .await(init); 
 
     function init(error, data, keys){
         /*
@@ -287,20 +287,20 @@ var Chart = (function(window,d3) {
             printHtml += outputBig[0];
             if(outputSmall){
                 printHtml += outputSmall[0];
-                printHtml += chemicalSelection + ' effects ' + outputBig[1] + ' significantly, effects ' +
-                            outputSmall[1] + ' not significantly. <br />';
+                printHtml +='<h5>' + chemicalSelection + ' effects ' + outputBig[1] + ' significantly, effects ' +
+                            outputSmall[1] + ' not significantly. </h5><br />';
             }else{
-                printHtml += chemicalSelection + ' effects ' + outputBig[1] + ' significantly. <br />';
+                printHtml +='<h5>' +  chemicalSelection + ' effects ' + outputBig[1] + ' significantly. </h5><br />';
             }
         }else if(outputSmall){
             printHtml += outputSmall[0];
-            printHtml += chemicalSelection + ' effects ' + outputSmall[1] + ' not significantly. <br />';
+            printHtml += '<h5>' + chemicalSelection + ' effects ' + outputSmall[1] + ' not significantly.  </h5><br />';
         }
 
         if(outputNo){
             printHtml += outputNo[0];
-            printHtml += 'Either ' + chemicalSelection + ' effects ' + outputNo[1] + 
-                        ' insignificantly or measurement records of ' + outputNo[1] + ' are missing.';
+            printHtml += '<h5>Either ' + chemicalSelection + ' effects ' + outputNo[1] + 
+                        ' insignificantly or measurement records of ' + outputNo[1] + ' are missing.</h5>';
         }
 
         //print out report
