@@ -337,6 +337,7 @@ var piechart = (function(window,d3) {
             
             //title
             svg.append('text')
+                .attr('class','subchartHeader')
                 .attr('x', ((width -700) / 2))             
                 .attr('y', (subChartMargin.top / 2))
                 .attr('text-anchor', 'middle')  
@@ -408,8 +409,14 @@ var piechart = (function(window,d3) {
         subChartTitle = titleLabel;
         var svg = d3.select('#subSvg');
         var subHeight = svg.attr("height") - subChartMargin.top - subChartMargin.bottom;
-        
-        svg.select('.subchartTitle').text('Cause of death: ' + titleLabel);
+
+        svg.select('.subchartHeader')
+                .attr('x', ((width -700) / 2))             
+                .attr('y', (subChartMargin.top / 2));
+        svg.select('.subchartTitle')
+                .attr('x', ((width -700) / 2) + 30)             
+                .attr('y', (3 * subChartMargin.top / 4))
+                .text('Cause of death: ' + titleLabel);
 
         var g = svg.select('g');
 
