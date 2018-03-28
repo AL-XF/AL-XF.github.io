@@ -1,6 +1,7 @@
 
 #charts {
     position: relative;
+    height: 700px;
 }
 #pieChart {
     width: 700px;
