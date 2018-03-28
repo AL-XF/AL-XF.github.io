@@ -11,22 +11,34 @@
 <script src="/js/d3pie.js"></script>
 </head>
 <body onresize="piechart.render()">
-    <div class="inputsection">
-        <form name="updateChart">
-                <label>Data Filter:</label><br /> 
-                <input type="radio" id="gender1" name="gender" value="F">
-                <label for="gender1">Female</label>
-                <input type="radio" id="gender2" name="gender" value="M">
-                <label for="gender2">Male</label>
-                <input type="radio" id="gender3" name="gender" value="all" checked>
-                <label for="gender3">All</label>
-        </form>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/cv">CV</a></li>
+            <li><a href="/projects">Projects</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="inputsection">
+                <form name="updateChart">
+                        <label>Data Filter:</label><br /> 
+                        <input type="radio" id="gender1" name="gender" value="F">
+                        <label for="gender1">Female</label>
+                        <input type="radio" id="gender2" name="gender" value="M">
+                        <label for="gender2">Male</label>
+                        <input type="radio" id="gender3" name="gender" value="all" checked>
+                        <label for="gender3">All</label>
+                </form>
+            </div>
+            <div id="charts">
+                <div id="pieChart"></div>
+                <div id="subChart"></div>
+            </div>
+            <script src="/js/piechart.js"></script>
+            {{ content }}
+
     </div>
-    <div id="charts">
-        <div id="pieChart"></div>
-        <div id="subChart"></div>
-    </div>
-    <script src="/js/piechart.js"></script>
-    {{ content }}
+    
 </body>
 </html>
