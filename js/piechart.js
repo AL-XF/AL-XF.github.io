@@ -75,7 +75,7 @@ var piechart = (function(window,d3) {
     var lineColor = colorbrewer.Blues[12];
 
     d3.queue()
-      .defer(d3.csv, './data/deathdata.csv')
+      .defer(d3.csv, '/data/deathdata.csv')
       .await(init); 
 
     function init(error, data){        
