@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/death.css">
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/d3pie.js"></script>
+</head>
+<body onresize="piechart.render()">
+    <div class="inputsection">
+        <form name="updateChart">
+                <label>Data Filter:</label><br /> 
+                <input type="radio" id="gender1" name="gender" value="F">
+                <label for="gender1">Female</label>
+                <input type="radio" id="gender2" name="gender" value="M">
+                <label for="gender2">Male</label>
+                <input type="radio" id="gender3" name="gender" value="all" checked>
+                <label for="gender3">All</label>
+        </form>
+    </div>
+    <div id="charts">
+        <div id="pieChart"></div>
+        <div id="subChart"></div>
+    </div>
+    <script src="/js/piechart.js"></script>
+    {{ content }}
+</body>
+</html>
