@@ -1,0 +1,23 @@
+
+#charts {
+    position: relative;
+}
+#pieChart {
+    width: 700px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#subChart{
+    margin-left: 700px;
+}
+
+div.inputsection {
+    position: fixed;
+    left: 0;
+    top: 20%;
+    width: 23em;
+    margin-top: -2.5em;
+    z-index: 999;
+}
