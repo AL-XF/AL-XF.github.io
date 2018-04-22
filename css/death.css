@@ -4,14 +4,16 @@
     height: 700px;
 }
 #pieChart {
-    width: 700px;
+    width: 750px;
     position: absolute;
     top: 0;
     left: 0;
+    z-index:10;
 }
 
 #subChart{
-    margin-left: 700px;
+    margin-left: 750px;
+    z-index:5;
 }
 
 div.inputsection {
