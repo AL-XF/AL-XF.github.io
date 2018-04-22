@@ -237,8 +237,8 @@ var piechart = (function(window,d3) {
             },
             size: {
                 canvasHeight: 550,
-                canvasWidth: 700,
-                pieOuterRadius: '80%'
+                canvasWidth: 750,
+                pieOuterRadius: '75%'
             },
             data: {
                 sortOrder: 'value-desc',
