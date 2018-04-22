@@ -390,7 +390,7 @@ var piechart = (function(window,d3) {
                 .style('text-anchor', 'end')
                 .transition()
                 .duration(500)
-                .attr('x',width - subChartMargin.left - subChartMargin.right - 705 )
+                .attr('x',width - subChartMargin.left - subChartMargin.right - 755 )
                 .attr('y', function(d) { return y((d[d.length - 1][0] + d[d.length - 1][1]) / 2); })
                 .text(function(d) { return yearText[d.key]; });
 
@@ -451,7 +451,7 @@ var piechart = (function(window,d3) {
                 .style('text-anchor', 'end')
                 .transition()
                 .duration(500)
-                .attr('x',width - subChartMargin.left - subChartMargin.right - 705 )
+                .attr('x',width - subChartMargin.left - subChartMargin.right - 755 )
                 .attr('y', function(d) { return y((d[d.length - 1][0] + d[d.length - 1][1]) / 2); }) 
                 .text(function(d) { return yearText[d.key]; });
 
