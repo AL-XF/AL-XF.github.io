@@ -331,14 +331,14 @@ var piechart = (function(window,d3) {
             var svg = d3.select('#subChart')
                     .append('svg')
                     .attr('id', 'subSvg')
-                    .attr('width', width -700)
+                    .attr('width', width -750)
                     .attr('height', 550),
             g = svg.append('g').attr('transform', 'translate(' + subChartMargin.left + ',' + subChartMargin.top + ')');
             
             //title
             svg.append('text')
                 .attr('class','subchartHeader')
-                .attr('x', ((width -700) / 2))             
+                .attr('x', ((width -750) / 2))             
                 .attr('y', (subChartMargin.top / 2))
                 .attr('text-anchor', 'middle')  
                 .style('font-size', '16px') 
@@ -346,7 +346,7 @@ var piechart = (function(window,d3) {
                 .text('Death rates by age');
             svg.append('text')
                 .attr('class','subchartTitle')
-                .attr('x', ((width -700) / 2) + 30)             
+                .attr('x', ((width -750) / 2) + 30)             
                 .attr('y', (3 * subChartMargin.top / 4))
                 .attr('text-anchor', 'middle')  
                 .style('font-size', '14px') 
@@ -355,7 +355,7 @@ var piechart = (function(window,d3) {
             var subHeight = svg.attr("height") - subChartMargin.top - subChartMargin.bottom;
 
             var x = d3.scaleLinear()
-                    .range([0, width - 700 - subChartMargin.left - subChartMargin.right]),
+                    .range([0, width - 750 - subChartMargin.left - subChartMargin.right]),
                 y = d3.scaleLinear()
                     .domain([0,1])
                     .range([subHeight, 0]),
@@ -411,10 +411,10 @@ var piechart = (function(window,d3) {
         var subHeight = svg.attr("height") - subChartMargin.top - subChartMargin.bottom;
 
         svg.select('.subchartHeader')
-                .attr('x', ((width -700) / 2))             
+                .attr('x', ((width -750) / 2))             
                 .attr('y', (subChartMargin.top / 2));
         svg.select('.subchartTitle')
-                .attr('x', ((width -700) / 2) + 30)             
+                .attr('x', ((width -750) / 2) + 30)             
                 .attr('y', (3 * subChartMargin.top / 4))
                 .text('Cause of death: ' + titleLabel);
 
@@ -422,7 +422,7 @@ var piechart = (function(window,d3) {
 
         //rest x, y, z winwidth may change
         var x = d3.scaleLinear()
-                    .range([0, width - 700 - subChartMargin.left - subChartMargin.right]),
+                    .range([0, width - 750 - subChartMargin.left - subChartMargin.right]),
             y = d3.scaleLinear()
                     .domain([0,1])
                     .range([subHeight, 0]),
